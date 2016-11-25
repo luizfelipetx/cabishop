@@ -6,7 +6,6 @@ import (
 	"strconv"
 )
 
-
 func main(){
 
 	stock :=  setupCatelog();
@@ -34,14 +33,29 @@ func setupCatelog() list.List{
 }
 
 
-func NewCheckout(){
-
+func NewCheckout(priceRules PriceRule) list.List{
 
 
 }
 
+type Rule struct {
+	format string
+	isDirectDiscount bool //if not use direct discount in $$ will be used percentage value.
+	percentage float64
+	isBundle bool
+	bundleEqual int
+	bundleNotEqual int
+	numberProductsToValidate int
+}
 
+type PriceRule struct{
 
+}
+
+type Checkout struct {
+	itens list.List
+	total float64
+}
 
 
 type Product struct{
