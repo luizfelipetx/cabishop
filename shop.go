@@ -6,10 +6,19 @@ import (
 	"strconv"
 )
 
+var co Checkout
+
 func main(){
 
 	stock :=  setupCatelog();
 	fmt.Print("In stoock to choose " + strconv.Itoa(stock.Len()) + " items:")
+	priceRules := PriceRule{}
+	co:= NewCheckout(priceRules)
+	co.Scan("VOUCHER")
+	co.Scan("VOUCHER")
+	co.Scan("TSHIRT")
+	total :=co.GetTotal()
+	fmt.Printf(total)
 }
 
 
@@ -33,9 +42,12 @@ func setupCatelog() list.List{
 }
 
 
-func NewCheckout(priceRules PriceRule) list.List{
+func NewCheckout(priceRules PriceRule) Checkout{
 
-
+	checkout := Checkout{
+		priceRules: priceRules,
+	};
+	return checkout;
 }
 
 type Rule struct {
@@ -49,14 +61,36 @@ type Rule struct {
 }
 
 type PriceRule struct{
-
+	rules []Rule
 }
 
 type Checkout struct {
 	itens list.List
 	total float64
+	priceRules PriceRule
 }
 
+
+
+func (c Checkout) Scan(item string) string{
+
+
+	co.itens = setupCatelog();
+
+
+
+   return ""
+}
+
+func (c Checkout) GetTotal() float64{
+
+	for e := co.itens.Front(); e != nil; e = e.Next() {
+		product := e.Value.(*Product) // print out the elements
+		fmt.Println(product.name)
+
+	}
+	return 30;
+}
 
 type Product struct{
 	name string
