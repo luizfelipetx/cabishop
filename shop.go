@@ -18,7 +18,8 @@ func main(){
 	co.Scan("VOUCHER")
 	co.Scan("TSHIRT")
 	total :=co.GetTotal()
-	fmt.Printf(total)
+	resultado := strconv.FormatFloat(total, 'f', 2, 64)
+	fmt.Printf("resultado total $ > " + resultado)
 }
 
 
